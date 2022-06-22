@@ -5,7 +5,6 @@ from dataclasses import dataclass
 @dataclass
 class ArgsNamespace:
     """Namespace for the command-line arguments"""
-    pass
 
 
 def create_parser() -> argparse.ArgumentParser:

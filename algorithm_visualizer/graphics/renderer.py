@@ -5,9 +5,9 @@ class Renderer:
     """Class that handles all graphics rendering"""
 
     background_colour: pg.Color = pg.Color(20, 20, 20)
-    screen: pg.Surface
+    screen: pg.surface.Surface
 
-    def __init__(self, screen: pg.Surface):
+    def __init__(self, screen: pg.surface.Surface):
         self.screen = screen
 
     def fill_background(self):
