@@ -4,6 +4,7 @@ from typing import Optional
 import pygame as pg
 
 from .algorithms import Algorithm
+from .exceptions import HaltingException
 from .graphics import Renderer
 
 
@@ -46,7 +47,12 @@ class Visualizer:
                         pg.quit()
                         sys.exit()
                     elif event.key == pg.K_SPACE:
-                        self.algorithm.start(self.renderer)
+                        try:
+                            self.algorithm.paused = False
+                            self.algorithm.start(self.renderer)
+                        except HaltingException:
+                            # Catch this in case custom implementations don't
+                            pass
                     elif event.key == pg.K_r:
                         self.algorithm.reset_state()
                         self.algorithm.render_current_state(self.renderer)

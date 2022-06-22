@@ -1,5 +1,3 @@
-import random
-
 from algorithm_visualizer.algorithms.presets.sorting.abc_list import (
     ListSortingAlgorithm,
 )
@@ -25,6 +23,3 @@ class BubbleSort(ListSortingAlgorithm):
         # Set current index back to -1 to remove the selection highlight
         self.current_index = -1
         self.render_current_state(renderer)
-
-    def reset_state(self):
-        random.shuffle(self.data)

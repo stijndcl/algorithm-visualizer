@@ -1,4 +1,5 @@
 import math
+import random
 from abc import ABC
 
 import pygame as pg
@@ -24,6 +25,9 @@ class ListSortingAlgorithm(Algorithm, ABC):
         self.reset_state()
 
     def render_current_state(self, renderer: Renderer):
+        # Check for keyboard events on every render
+        self.process_inputs()
+
         renderer.fill_background()
 
         rect_width = renderer.width // len(self.data)
@@ -41,3 +45,6 @@ class ListSortingAlgorithm(Algorithm, ABC):
             renderer.draw_rectangle(i * rect_width, renderer.height - bar_height, rect_width, bar_height, colour)
 
         pg.display.update()
+
+    def reset_state(self):
+        random.shuffle(self.data)
