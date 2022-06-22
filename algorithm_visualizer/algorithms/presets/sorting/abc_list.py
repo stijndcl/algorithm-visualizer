@@ -25,9 +25,6 @@ class ListSortingAlgorithm(Algorithm, ABC):
         self.reset_state()
 
     def render_current_state(self, renderer: Renderer):
-        # Check for keyboard events on every render
-        self.process_inputs()
-
         renderer.fill_background()
 
         rect_width = renderer.width // len(self.data)

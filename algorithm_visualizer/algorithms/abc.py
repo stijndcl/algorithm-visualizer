@@ -17,8 +17,11 @@ class Algorithm(ABC):
         """Render the current state of the algorithm"""
 
     @abstractmethod
-    def start(self, renderer: Renderer):
-        """Start running this algorithm"""
+    def run(self):
+        """Start running this algorithm
+        In order to pause to render the current state, and check for keyboard events,
+        the algorithm should yield whenever desired
+        """
 
     @abstractmethod
     def reset_state(self):
@@ -34,7 +37,7 @@ class Algorithm(ABC):
                 pg.quit()
                 sys.exit()
             elif event.type == pg.KEYDOWN:
-                if event.key == pg.K_ESCAPE:
+                if event.key == pg.K_ESCAPE or event.key == pg.K_q:
                     pg.quit()
                     sys.exit()
                 elif event.key == pg.K_SPACE:

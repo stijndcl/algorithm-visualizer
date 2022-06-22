@@ -38,6 +38,8 @@ class Visualizer:
     def game_loop(self):
         """Main loop"""
         while True:
+            self.algorithm.render_current_state(self.renderer)
+
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     pg.quit()
@@ -49,7 +51,12 @@ class Visualizer:
                     elif event.key == pg.K_SPACE:
                         try:
                             self.algorithm.paused = False
-                            self.algorithm.start(self.renderer)
+
+                            # Algorithm.run() pauses using yield, so it must be called
+                            # using a for-loop
+                            for _ in self.algorithm.run():
+                                self.algorithm.process_inputs()
+                                self.algorithm.render_current_state(self.renderer)
                         except HaltingException:
                             # Catch this in case custom implementations don't
                             pass
