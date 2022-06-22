@@ -1,0 +1,15 @@
+[tool.black]
+line-length = 120
+
+[tool.pylint.master]
+disable = [
+    "missing-module-docstring",
+    "too-few-public-methods",
+]
+extension-pkg-whitelist = [
+    "pygame"
+]
+
+[tool.pylint.format]
+max-line-length = 120
+good-names = ["i"]
