@@ -11,6 +11,28 @@ class Algorithm(ABC):
     """Abstract class for algorithms that can be visualized"""
 
     paused: bool = False
+    _renderer: Renderer
+
+    @property
+    def renderer(self) -> Renderer:
+        """Getter for the renderer"""
+        return self._renderer
+
+    @renderer.setter
+    def renderer(self, renderer: Renderer):
+        """Link the renderer
+        This is not an __init__ argument, because there may not yet be a renderer
+        at the time of creating the Algorithm() instance
+
+        This automatically calls Algorithm.setup() to do any further initialization
+        """
+        self._renderer = renderer
+        self.setup()
+
+    def setup(self):
+        """Do something after initialization of the algorithm & renderer
+        Can be used to pre-calculate some graphical aspects based on the display & renderer settings
+        """
 
     @abstractmethod
     def render_current_state(self, renderer: Renderer):

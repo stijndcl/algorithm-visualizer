@@ -14,4 +14,4 @@ extension-pkg-whitelist = [
 
 [tool.pylint.format]
 max-line-length = 120
-good-names = ["i", "j", "x", "y"]
+good-names = ["i", "j", "n", "x", "y"]

@@ -30,6 +30,9 @@ class Visualizer:
             self.renderer = Renderer(surface)
 
         pg.display.set_caption("Algorithm Visualizer | Stijndcl")
+
+        # Link renderer & initialize
+        self.algorithm.renderer = self.renderer
         self.algorithm.render_current_state(self.renderer)
 
         # Initialize Pygame
