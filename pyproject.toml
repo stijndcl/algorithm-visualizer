@@ -5,6 +5,8 @@ line-length = 120
 disable = [
     "missing-module-docstring",
     "too-few-public-methods",
+    "too-many-arguments",
+    "too-many-nested-blocks"
 ]
 extension-pkg-whitelist = [
     "pygame"
@@ -12,4 +14,4 @@ extension-pkg-whitelist = [
 
 [tool.pylint.format]
 max-line-length = 120
-good-names = ["i"]
+good-names = ["i", "j", "n", "x", "y"]

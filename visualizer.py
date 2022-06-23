@@ -3,5 +3,5 @@ from algorithm_visualizer.visualizer import Visualizer
 
 
 if __name__ == "__main__":
-    visualizer = Visualizer(BubbleSort())
+    visualizer = Visualizer(BubbleSort(list(range(1, 100))))
     visualizer.game_loop()

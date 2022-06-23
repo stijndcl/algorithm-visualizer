@@ -4,6 +4,7 @@ from typing import Optional
 import pygame as pg
 
 from .algorithms import Algorithm
+from .exceptions import HaltingException
 from .graphics import Renderer
 
 
@@ -29,6 +30,9 @@ class Visualizer:
             self.renderer = Renderer(surface)
 
         pg.display.set_caption("Algorithm Visualizer | Stijndcl")
+
+        # Link renderer & initialize
+        self.algorithm.renderer = self.renderer
         self.algorithm.render_current_state(self.renderer)
 
         # Initialize Pygame
@@ -37,6 +41,8 @@ class Visualizer:
     def game_loop(self):
         """Main loop"""
         while True:
+            self.algorithm.render_current_state(self.renderer)
+
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     pg.quit()
@@ -46,7 +52,17 @@ class Visualizer:
                         pg.quit()
                         sys.exit()
                     elif event.key == pg.K_SPACE:
-                        self.algorithm.start(self.renderer)
+                        try:
+                            self.algorithm.paused = False
+
+                            # Algorithm.run() pauses using yield, so it must be called
+                            # using a for-loop
+                            for _ in self.algorithm.run():
+                                self.algorithm.process_inputs()
+                                self.algorithm.render_current_state(self.renderer)
+                        except HaltingException:
+                            # Catch this in case custom implementations don't
+                            pass
                     elif event.key == pg.K_r:
                         self.algorithm.reset_state()
                         self.algorithm.render_current_state(self.renderer)

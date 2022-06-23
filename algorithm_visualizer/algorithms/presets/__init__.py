@@ -1,1 +1,1 @@
-from .sorting import BubbleSort
+from .sorting import *
