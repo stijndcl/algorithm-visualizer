@@ -5,7 +5,8 @@ line-length = 120
 disable = [
     "missing-module-docstring",
     "too-few-public-methods",
-    "too-many-arguments"
+    "too-many-arguments",
+    "too-many-nested-blocks"
 ]
 extension-pkg-whitelist = [
     "pygame"

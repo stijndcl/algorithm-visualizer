@@ -32,12 +32,14 @@ class Algorithm(ABC):
 
     def process_inputs(self):
         """Process keyboard inputs during execution of the algorithm"""
+        # pylint: disable=R0801 # The handling of inputs can't really be moved away because
+        # that part starts the algorithm itself
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 pg.quit()
                 sys.exit()
             elif event.type == pg.KEYDOWN:
-                if event.key == pg.K_ESCAPE or event.key == pg.K_q:
+                if event.key in (pg.K_ESCAPE, event.key == pg.K_q):
                     pg.quit()
                     sys.exit()
                 elif event.key == pg.K_SPACE:
